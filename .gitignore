@@ -3,6 +3,8 @@ dist/
 test-results/
 .DS_Store
 *.log
+*.zip
 .env
 .env.local
 .env.*.local
+store-assets/devconsole_*.png

@@ -1,98 +1,101 @@
-# GitHub Command Center — Chrome Extension
+<p align="center">
+  <img src="public/icons/icon-128.png" alt="Octant Logo" width="128" height="128">
+</p>
 
-> A refined personal developer cockpit that instantly reveals what is happening across all GitHub repositories you actively work on — across personal accounts and organizations.
+<h1 align="center">Octant</h1>
 
-Designed with an **Apple / Steve Jobs + Linear + Raycast** philosophy: calm, monochrome-first typography, high signal-to-noise ratio, zero clutter, and instantaneous performance.
+<p align="center">
+  <strong>A high-precision developer navigation instrument for GitHub</strong>
+</p>
 
----
-
-## Key Features
-
-### 1. 🚀 Latest Personal Pushes (Core Feature)
-* Shows the **latest 5 unique repositories you personally pushed to**, sorted strictly newest-first by your own push timestamp.
-* Deduplicates multiple pushes to the same repository.
-* Displays repository name, owner/organization tag, visibility badge, active branch, commit message, shortened commit SHA (7 chars), push relative timestamp, commit count, and language indicator.
-* Quick-click direct targets: click repository to open repo, click commit SHA to open commit, click branch chip to open branch tree.
-
-### 2. ⚠️ PRs Requiring Your Attention
-* High-signal alerts for pull requests requiring action:
-  * **Changes requested**: Reviewer requested changes on your PR.
-  * **Review requested**: You were added to `requested_reviewers`.
-  * **Checks failing**: CI status checks or workflow runs failed.
-  * **Merge conflicts**: Conflicts preventing merge.
-  * **Ready to merge**: Approved with all checks passing.
-
-### 3. 🌿 My Open Pull Requests
-* All active PRs authored by you across all repositories and organizations.
-* Displays draft / ready state, base $\leftarrow$ head branches, review state, CI checks, comment counts, diff stats, and labels.
-
-### 4. ⏱️ Recent PR & Push Activity Timeline
-* Chronological developer activity stream grouped by **Today**, **Yesterday**, and **Earlier**.
-* Records pushed commits, opened PRs, submitted reviews, approved PRs, and merged branches.
-
-### 5. 🏢 Multi-Organization Intelligence & Filtering
-* Automatically discovers all organizations your account has access to.
-* Instant filter bar: **All**, **Personal**, or specific organization views.
-
-### 6. ⌨️ Global Command Palette (`⌘K` / `Ctrl+K`)
-* Lightning-fast fuzzy search across all repositories, open PRs, action items, and organizations.
-* Quick actions: Open GitHub, refresh data, switch theme (Dark / Light / System), open settings.
-* Full keyboard navigation (Arrow keys, Enter, Escape).
-
-### 7. 💻 Dual Surface Experience
-* **Popup Window**: Fast, 560px compact popup accessible from the browser toolbar.
-* **New Tab Cockpit**: Optional full-screen dashboard with high-level metric summaries and expanded multi-column layout.
+<p align="center">
+  <img src="https://img.shields.io/badge/Chrome-Extension-4285F4?style=for-the-badge&logo=google-chrome" alt="Chrome">
+  <img src="https://img.shields.io/badge/Privacy-100%25_Local-brightgreen?style=for-the-badge" alt="Privacy">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18">
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License">
+</p>
 
 ---
 
-## 🔒 Security & Privacy Model
+### ✨ Why Octant?
 
-* **Local Storage Only**: Personal Access Tokens (PAT) are stored strictly on your local device in `chrome.storage.local`.
-* **Zero Telemetry**: No tracking, no external analytics, no third-party servers.
-* **Direct Communication**: Communicates directly and exclusively with official GitHub APIs (`https://api.github.com`).
-* **Token Redaction**: Tokens are never printed, logged, or exposed in errors.
-* **Read-Only Minimum Permissions**: Operates in read-only mode — never modifies your repositories, PRs, or settings.
+Octant gives developers an instant, high-signal overview of everything happening across their personal GitHub repositories and multi-organization workspaces — with zero noise, zero latency, and zero telemetry.
+
+- **🚀 Top 5 Personal Pushes** — Tracks and deduplicates the 5 most recent repositories you personally pushed code to, sorted strictly newest-first by your push timestamp.
+- **⚠️ Attention Radar** — Instant triage for pull requests requiring action: review requests, changes requested, failing CI checks, and merge conflicts.
+- **🌿 My Open Pull Requests** — Real-time overview of all PRs you authored across personal accounts and organizations with CI status, review progress, and branch chips.
+- **⏱️ Personal Activity Timeline** — Chronological developer activity stream grouped by Today, Yesterday, and Earlier.
+- **🏢 Multi-Organization Intelligence** — Automatically discovers and filters across all GitHub organizations you belong to with one-click filtering.
+- **⌨️ Global Command Palette (`⌘K`)** — Lightning-fast fuzzy search across all your repositories, PRs, action items, and quick commands.
+- **🌓 Dual Surface Cockpit** — Seamlessly switch between a compact 560px toolbar popup and an expanded full-screen New Tab Cockpit dashboard with Dark, Light, and System themes.
+- **🔒 100% Private & Local** — Tokens are stored strictly on your local device in `chrome.storage.local`. Zero telemetry, no intermediary servers, direct GitHub API calls.
+- **⚡ Instantaneous Performance** — SWR in-memory and disk caching with automatic background synchronization.
 
 ---
 
-## 🔑 GitHub Personal Access Token (PAT) Setup
+### 📸 Preview
 
-Create a **Fine-grained Personal Access Token** or Classic PAT on GitHub:
+<p align="center">
+  <img src="store-assets/screenshot_1_cockpit_dark.png" alt="Octant Dark Mode Cockpit" width="100%">
+</p>
+
+<p align="center">
+  <img src="store-assets/screenshot_2_cockpit_light.png" alt="Octant Light Mode Cockpit" width="100%">
+</p>
+
+---
+
+### 📥 Installation
+
+#### Chrome Web Store (Recommended)
+> *Coming soon to the Chrome Web Store.*
+
+#### Manual Developer Installation (Chrome, Brave, Edge, Arc)
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/samirpatil2000/octant.git
+   cd octant
+   ```
+2. Install dependencies and build the extension:
+   ```bash
+   npm install
+   npm run build
+   ```
+3. Open your browser and navigate to `chrome://extensions`.
+4. Toggle **Developer mode** in the top-right corner.
+5. Click **Load unpacked** and select the `dist/` folder inside this directory.
+6. Pin **Octant** to your browser toolbar.
+
+---
+
+### 🔒 Privacy & Security Model
+
+- **100% Local Storage**: Your GitHub Personal Access Token is stored strictly on your local device in sandboxed `chrome.storage.local`.
+- **Zero Telemetry**: No analytics, no tracking pixels, no logging servers, and no third-party scripts.
+- **Direct GitHub API**: Communicates directly and exclusively with official GitHub endpoints (`https://api.github.com`).
+- **Read-Only Scope**: Operates entirely with minimal read-only permissions — never writes to or modifies your code or repositories.
+
+---
+
+### 🔑 GitHub Personal Access Token (PAT) Setup
+
+Octant works with both **Fine-grained Personal Access Tokens** and **Classic PATs**:
 
 1. Go to **GitHub Settings** $\rightarrow$ **Developer Settings** $\rightarrow$ [**Personal Access Tokens**](https://github.com/settings/tokens?type=beta).
 2. Click **Generate new token**.
-3. Under **Repository access**, select **All repositories** (or select specific repositories).
-4. Minimum recommended permissions (Read-only):
-   * **Commit statuses**: Read-only
-   * **Contents**: Read-only
-   * **Metadata**: Read-only (mandatory)
-   * **Pull requests**: Read-only
-   * **Organization permissions $\rightarrow$ Members**: Read-only
-5. Paste your token into the extension Settings and click **Test Connection**.
+3. Under **Repository access**, choose **All repositories** (or select specific repositories).
+4. Recommended read-only permissions:
+   - **Commit statuses**: Read-only
+   - **Contents**: Read-only
+   - **Metadata**: Read-only (mandatory)
+   - **Pull requests**: Read-only
+   - **Organization permissions $\rightarrow$ Members**: Read-only
+5. Paste the token into Octant Settings and click **Test Connection**.
 
 ---
 
-## 🛠️ Installation & Chrome Setup
-
-### 1. Build the Extension
-```bash
-# Install dependencies
-npm install
-
-# Build extension
-npm run build
-```
-
-### 2. Load into Chrome
-1. Open Google Chrome and navigate to `chrome://extensions`.
-2. Toggle **Developer mode** in the top right corner.
-3. Click **Load unpacked** in the top left.
-4. Select the `dist/` folder inside this project directory (`github-command-center/dist`).
-5. Pin **GitHub Command Center** to your browser toolbar.
-
----
-
-## ⌨️ Keyboard Shortcuts
+### ⌨️ Keyboard Shortcuts
 
 | Shortcut | Action |
 | :--- | :--- |
@@ -100,30 +103,32 @@ npm run build
 | `R` | Refresh GitHub Data |
 | `,` (Comma) | Open Settings & Preferences |
 | `1` – `5` | Open Top 1–5 Pushed Repositories directly |
-| `Esc` | Dismiss Modal / Command Palette |
+| `Esc` | Close Modal / Command Palette |
 
 ---
 
-## 🧪 Testing
+### 🛠️ Development & Testing
 
-### Automated Unit Tests
 ```bash
-# Run Vitest test suite
+# Start local development server with HMR
+npm run dev
+
+# Run Vitest automated unit tests
 npm run test
-```
 
-### Real Browser E2E Testing
-```bash
-# Run automated Chrome browser validation with visual screenshots
-GITHUB_TEST_TOKEN="ghp_your_pat_here" npm run test:e2e
+# Run real-browser Puppeteer E2E validation
+npm run test:e2e
+
+# Build production bundle
+npm run build
 ```
 
 ---
 
-## 📁 Architecture
+### 📁 Architecture
 
 ```text
-github-command-center/
+octant/
 ├── src/
 │   ├── api/             # Resilient GitHub REST API client & endpoints
 │   │   ├── client.ts    # Fetch client with rate limiting & error handling
@@ -151,17 +156,17 @@ github-command-center/
 │   │   ├── SettingsModal.tsx
 │   │   ├── OnboardingModal.tsx
 │   │   └── OrgFilter.tsx
-│   ├── popup/           # Extension popup application
-│   ├── newtab/          # Expanded new tab cockpit dashboard
+│   ├── popup/           # Extension popup surface (560px)
+│   ├── newtab/          # Expanded New Tab Cockpit dashboard
 │   ├── background/      # Service worker for background sync & badge alerts
 │   └── styles/          # Tailwind design system & SF typography
-├── public/              # Manifest V3 & PNG icons (16, 32, 48, 128)
+├── public/              # Manifest V3 & PNG icons
 ├── test/                # Unit tests & browser automation E2E suites
-└── scripts/             # Multi-target build and icon generation scripts
+└── scripts/             # Multi-target build and asset scripts
 ```
 
 ---
 
-## License
+### 📄 License
 
-MIT
+[MIT](LICENSE) © [Samir Patil](https://github.com/samirpatil2000)

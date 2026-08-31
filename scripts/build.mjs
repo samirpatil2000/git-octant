@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, '..');
 
 async function buildAll() {
-  console.log('📦 Building GitHub Command Center extension...');
+  console.log('📦 Building Octant extension...');
 
   // 1. Build UI Pages (popup & newtab)
   console.log('🔹 Building HTML surfaces (popup, newtab)...');

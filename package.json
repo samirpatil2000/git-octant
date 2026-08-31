@@ -1,7 +1,7 @@
 {
-  "name": "github-command-center",
+  "name": "octant",
   "version": "1.0.0",
-  "description": "A refined developer cockpit for GitHub repositories across all organizations",
+  "description": "A high-precision developer navigation instrument for GitHub",
   "type": "module",
   "scripts": {
     "dev": "vite",

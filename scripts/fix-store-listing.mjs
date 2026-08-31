@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer-core';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -10,7 +11,9 @@ const ROOT = path.resolve(__dirname, '..');
 const STORE_ASSETS = path.resolve(ROOT, 'store-assets');
 
 async function fixStoreListing() {
-  const portFilePath = '/Users/samirpatil/Library/Application Support/Google/Chrome/DevToolsActivePort';
+  const portFilePath =
+    process.env.CHROME_DEVTOOLS_PORT_FILE ||
+    path.join(os.homedir(), 'Library/Application Support/Google/Chrome/DevToolsActivePort');
   const lines = fs.readFileSync(portFilePath, 'utf8').trim().split('\n');
   const port = lines[0].trim();
   const wsPath = lines[1]?.trim() || '';

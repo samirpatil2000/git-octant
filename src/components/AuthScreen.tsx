@@ -56,10 +56,10 @@ export function AuthScreen({ onConnectToken, isNewTab = false }: AuthScreenProps
           </div>
           <div>
             <h2 className="text-sm font-bold text-fg-light dark:text-fg-dark tracking-tight">
-              GitHub Command Center
+              Octant
             </h2>
             <p className="text-[11px] text-fg-light-muted dark:text-fg-dark-muted mt-0.5">
-              Personal developer cockpit across all your repositories
+              High-precision developer navigation for GitHub
             </p>
           </div>
         </div>

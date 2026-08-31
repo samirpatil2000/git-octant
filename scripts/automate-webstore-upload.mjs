@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer-core';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,7 +12,9 @@ const ZIP_PATH = path.resolve(ROOT, 'github-command-center.zip');
 const STORE_ASSETS = path.resolve(ROOT, 'store-assets');
 
 async function automateUpload() {
-  const portFilePath = '/Users/samirpatil/Library/Application Support/Google/Chrome/DevToolsActivePort';
+  const portFilePath =
+    process.env.CHROME_DEVTOOLS_PORT_FILE ||
+    path.join(os.homedir(), 'Library/Application Support/Google/Chrome/DevToolsActivePort');
   if (!fs.existsSync(portFilePath)) {
     console.error('DevToolsActivePort not found');
     process.exit(1);

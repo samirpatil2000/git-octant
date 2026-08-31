@@ -55,7 +55,7 @@ export function Header({
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
               <h1 className="text-xs font-semibold text-fg-light dark:text-fg-dark tracking-tight truncate">
-                GitHub Command Center
+                Octant
               </h1>
               {isMockData && (
                 <span className="px-1.5 py-0.2 text-[9px] font-medium tracking-wide uppercase rounded bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 shrink-0">

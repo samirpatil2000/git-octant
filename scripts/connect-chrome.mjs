@@ -1,9 +1,12 @@
 import puppeteer from 'puppeteer-core';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 
 async function connectToLiveChrome() {
-  const portFilePath = '/Users/samirpatil/Library/Application Support/Google/Chrome/DevToolsActivePort';
+  const portFilePath =
+    process.env.CHROME_DEVTOOLS_PORT_FILE ||
+    path.join(os.homedir(), 'Library/Application Support/Google/Chrome/DevToolsActivePort');
   if (!fs.existsSync(portFilePath)) {
     console.error('DevToolsActivePort not found');
     process.exit(1);
