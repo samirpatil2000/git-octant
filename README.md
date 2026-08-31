@@ -49,7 +49,7 @@ GitOctant gives developers an instant, high-signal overview of everything happen
 ### 📥 Installation
 
 #### Chrome Web Store (Recommended)
-> *Coming soon to the Chrome Web Store.*
+> https://chromewebstore.google.com/detail/ddnajpnjpncdkldlcielnlkobgbolnha?authuser=0&hl=en
 
 #### Manual Developer Installation (Chrome, Brave, Edge, Arc)
 1. Clone this repository:
