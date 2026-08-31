@@ -23,6 +23,7 @@ import {
 import { aggregateLatestPushes } from '../lib/push-aggregator';
 import { classifyAttentionItems } from '../lib/attention';
 import { generateActivityTimeline } from '../lib/activity';
+import { sortOrganizationsByPreference } from '../lib/org-sorter';
 import { GitHubApiError } from '../api/client';
 import { GitHubRepository } from '../types/github';
 
@@ -72,7 +73,11 @@ export function useDashboardData() {
       const cached = await getCachedDashboard();
       if (cached && cached.data && cached.data.user) {
         if (!isMountedRef.current) return;
-        setData(cached.data);
+        const sortedCachedOrgs = sortOrganizationsByPreference(
+          cached.data.organizations || [],
+          storedSettings.orgOrder
+        );
+        setData({ ...cached.data, organizations: sortedCachedOrgs });
         setIsLoading(false);
       }
 
@@ -118,13 +123,15 @@ export function useDashboardData() {
         }
 
         // 2. Concurrently fetch Organizations, Events, Repositories, Author PRs, Review PRs
-        const [orgs, events, rawRepos, authorPRs, reviewReqPRs] = await Promise.all([
+        const [rawOrgs, events, rawRepos, authorPRs, reviewReqPRs] = await Promise.all([
           getUserOrganizations(token),
           getUserEvents(username, token, 100),
           getUserRepositories(token, 100),
           getOpenPRsByAuthor(username, token),
           getReviewRequestedPRs(username, token),
         ]);
+
+        const orgs = sortOrganizationsByPreference(rawOrgs, activeSettings.orgOrder);
 
         const repoMetaMap = new Map<string, GitHubRepository>();
         for (const r of rawRepos) {
@@ -253,6 +260,18 @@ export function useDashboardData() {
     return owner.toLowerCase() === selectedOrg.toLowerCase();
   });
 
+  // Reorder organizations preference handler
+  const reorderOrganizations = useCallback(
+    async (newOrder: string[]) => {
+      await updateSettings({ orgOrder: newOrder });
+      setData((prev) => ({
+        ...prev,
+        organizations: sortOrganizationsByPreference(prev.organizations, newOrder),
+      }));
+    },
+    [updateSettings]
+  );
+
   return {
     data,
     settings,
@@ -265,6 +284,7 @@ export function useDashboardData() {
       setSelectedOrg(org);
       updateSettings({ selectedOrgFilter: org });
     },
+    reorderOrganizations,
     refreshDashboard: () => refreshDashboard(settings, false),
     updateSettings,
     filteredLatestPushes,

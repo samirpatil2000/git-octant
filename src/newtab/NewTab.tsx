@@ -25,6 +25,7 @@ export function NewTab() {
     rateLimit,
     selectedOrg,
     setSelectedOrg,
+    reorderOrganizations,
     refreshDashboard,
     updateSettings,
     filteredLatestPushes,
@@ -109,6 +110,7 @@ export function NewTab() {
                 organizations={data.organizations}
                 selectedOrg={selectedOrg}
                 onSelectOrg={setSelectedOrg}
+                onReorderOrgs={reorderOrganizations}
               />
             </div>
 

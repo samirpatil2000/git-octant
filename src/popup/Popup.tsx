@@ -24,6 +24,7 @@ export function Popup() {
     rateLimit,
     selectedOrg,
     setSelectedOrg,
+    reorderOrganizations,
     refreshDashboard,
     updateSettings,
     filteredLatestPushes,
@@ -117,6 +118,7 @@ export function Popup() {
             organizations={data.organizations}
             selectedOrg={selectedOrg}
             onSelectOrg={setSelectedOrg}
+            onReorderOrgs={reorderOrganizations}
           />
 
           {/* Scrollable Main Area */}

@@ -15,6 +15,7 @@ export const DEFAULT_SETTINGS: UserSettings = {
   showOpenPrsSection: true,
   showActivityTimeline: true,
   showRepoGrid: true,
+  orgOrder: [],
 };
 
 // In-memory fallback for local development or non-extension environments
@@ -36,7 +37,9 @@ export async function getStoredSettings(): Promise<UserSettings> {
         return { ...DEFAULT_SETTINGS, ...result[SETTINGS_KEY] };
       }
     } else {
-      const item = memoryStore.get(SETTINGS_KEY) || localStorage.getItem(SETTINGS_KEY);
+      const item =
+        memoryStore.get(SETTINGS_KEY) ||
+        (typeof localStorage !== 'undefined' ? localStorage.getItem(SETTINGS_KEY) : null);
       if (item) {
         const parsed = typeof item === 'string' ? JSON.parse(item) : item;
         return { ...DEFAULT_SETTINGS, ...parsed };
@@ -57,9 +60,11 @@ export async function saveStoredSettings(settings: Partial<UserSettings>): Promi
       await chrome.storage.local.set({ [SETTINGS_KEY]: updated });
     } else {
       memoryStore.set(SETTINGS_KEY, updated);
-      try {
-        localStorage.setItem(SETTINGS_KEY, JSON.stringify(updated));
-      } catch (_) {}
+      if (typeof localStorage !== 'undefined') {
+        try {
+          localStorage.setItem(SETTINGS_KEY, JSON.stringify(updated));
+        } catch (_) {}
+      }
     }
   } catch (err) {
     console.error('Failed to save settings to storage', err);
@@ -79,7 +84,9 @@ export async function getCachedDashboard(): Promise<{ data: DashboardData; times
       const result = await chrome.storage.local.get([CACHE_KEY]);
       return result[CACHE_KEY] || null;
     } else {
-      const item = memoryStore.get(CACHE_KEY) || localStorage.getItem(CACHE_KEY);
+      const item =
+        memoryStore.get(CACHE_KEY) ||
+        (typeof localStorage !== 'undefined' ? localStorage.getItem(CACHE_KEY) : null);
       if (item) {
         return typeof item === 'string' ? JSON.parse(item) : item;
       }
@@ -100,9 +107,11 @@ export async function setCachedDashboard(data: DashboardData): Promise<void> {
       await chrome.storage.local.set({ [CACHE_KEY]: payload });
     } else {
       memoryStore.set(CACHE_KEY, payload);
-      try {
-        localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
-      } catch (_) {}
+      if (typeof localStorage !== 'undefined') {
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+        } catch (_) {}
+      }
     }
   } catch (err) {
     console.error('Failed to write cache', err);
@@ -115,9 +124,11 @@ export async function clearCachedDashboard(): Promise<void> {
       await chrome.storage.local.remove([CACHE_KEY]);
     } else {
       memoryStore.delete(CACHE_KEY);
-      try {
-        localStorage.removeItem(CACHE_KEY);
-      } catch (_) {}
+      if (typeof localStorage !== 'undefined') {
+        try {
+          localStorage.removeItem(CACHE_KEY);
+        } catch (_) {}
+      }
     }
   } catch (err) {
     console.error('Failed to clear cache', err);

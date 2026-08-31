@@ -56,8 +56,22 @@ export function SettingsModal({
   const [showOpenPrs, setShowOpenPrs] = useState(settings.showOpenPrsSection ?? true);
   const [showActivity, setShowActivity] = useState(settings.showActivityTimeline ?? true);
   const [showRepoGrid, setShowRepoGrid] = useState(settings.showRepoGrid ?? true);
-
   const [activeTab, setActiveTab] = useState<'connection' | 'dashboard' | 'appearance' | 'privacy'>('connection');
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setTokenInput(settings.token || '');
+      setTheme(settings.theme || 'system');
+      setEnableNewTab(settings.enableNewTab ?? true);
+      setAutoRefreshInterval(settings.autoRefreshIntervalMinutes || 10);
+      setMaxLatestRepos(settings.maxLatestRepos || 5);
+      setShowAttention(settings.showAttentionSection ?? true);
+      setShowOpenPrs(settings.showOpenPrsSection ?? true);
+      setShowActivity(settings.showActivityTimeline ?? true);
+      setShowRepoGrid(settings.showRepoGrid ?? true);
+      setOrgOrder(settings.orgOrder || []);
+    }
+  }, [isOpen, settings]);
 
   if (!isOpen) return null;
 
@@ -99,6 +113,8 @@ export function SettingsModal({
     }
   };
 
+  const [orgOrder, setOrgOrder] = useState<string[]>(settings.orgOrder || []);
+
   const handleSaveAll = async () => {
     await onSaveSettings({
       token: tokenInput.trim(),
@@ -110,6 +126,7 @@ export function SettingsModal({
       showOpenPrsSection: showOpenPrs,
       showActivityTimeline: showActivity,
       showRepoGrid,
+      orgOrder,
     });
     applyTheme(theme);
     onClose();
@@ -339,6 +356,43 @@ export function SettingsModal({
                     </label>
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="block text-xs font-semibold text-fg-light dark:text-fg-dark">
+                    Organization Order
+                  </label>
+                  {orgOrder.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setOrgOrder([])}
+                      className="text-[11px] text-brand-500 hover:text-brand-600 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+                    >
+                      Reset to Default
+                    </button>
+                  )}
+                </div>
+                <p className="text-[11px] text-fg-light-muted dark:text-fg-dark-muted leading-relaxed mb-2">
+                  You can drag and drop organization tabs directly in the top filter bar to rearrange them. Preferences are saved automatically.
+                </p>
+                {orgOrder.length > 0 ? (
+                  <div className="flex flex-wrap gap-1.5 p-2.5 rounded-xl border border-border-light/60 dark:border-border-dark/60 bg-surface-light dark:bg-surface-dark">
+                    {orgOrder.map((name, i) => (
+                      <span
+                        key={name}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-surface-light-hover dark:bg-surface-dark-hover border border-border-light dark:border-border-dark text-fg-light dark:text-fg-dark"
+                      >
+                        <span className="text-[10px] text-fg-light-subtle dark:text-fg-dark-subtle">{i + 1}.</span>
+                        {name}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-[11px] italic text-fg-light-subtle dark:text-fg-dark-subtle">
+                    Using default alphabetical / GitHub API ordering.
+                  </p>
+                )}
               </div>
             </div>
           )}

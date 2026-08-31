@@ -82,6 +82,7 @@ export interface UserSettings {
   showOpenPrsSection: boolean;
   showActivityTimeline: boolean;
   showRepoGrid: boolean;
+  orgOrder?: string[]; // Array of organization logins in preferred order
 }
 
 export interface DashboardData {
