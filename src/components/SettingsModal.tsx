@@ -468,7 +468,7 @@ export function SettingsModal({
                   Your GitHub token stays strictly on this device in secure Chrome storage (<code className="font-mono text-[11px] text-brand-500">chrome.storage.local</code>).
                 </p>
                 <p className="text-xs text-fg-light-muted dark:text-fg-dark-muted leading-relaxed mt-2">
-                  Octant does not operate any intermediary backend, does not collect analytics or telemetry, and communicates directly and exclusively with GitHub&apos;s official APIs.
+                  GitOctant does not operate any intermediary backend, does not collect analytics or telemetry, and communicates directly and exclusively with GitHub&apos;s official APIs.
                 </p>
               </div>
             </div>

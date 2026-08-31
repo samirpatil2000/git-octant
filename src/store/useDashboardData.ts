@@ -138,12 +138,12 @@ export function useDashboardData() {
           repoMetaMap.set(r.full_name.toLowerCase(), r);
         }
 
-        // 3. Aggregate Latest Pushes
+        // 3. Aggregate Latest Pushes (pool of up to 50 repos)
         const latestPushes = aggregateLatestPushes(
           events,
           username,
           repoMetaMap,
-          activeSettings.maxLatestRepos || 5
+          50
         );
 
         // 4. PRs & Attention
@@ -228,11 +228,13 @@ export function useDashboardData() {
   );
 
   // Filtered views based on selectedOrg ('all' | 'personal' | orgName)
-  const filteredLatestPushes = data.latestPushes.filter((p) => {
-    if (selectedOrg === 'all') return true;
-    if (selectedOrg === 'personal') return !p.isOrg;
-    return p.owner.toLowerCase() === selectedOrg.toLowerCase();
-  });
+  const filteredLatestPushes = data.latestPushes
+    .filter((p) => {
+      if (selectedOrg === 'all') return true;
+      if (selectedOrg === 'personal') return !p.isOrg;
+      return p.owner.toLowerCase() === selectedOrg.toLowerCase();
+    })
+    .slice(0, settings.maxLatestRepos || 5);
 
   const filteredOpenPrs = data.myOpenPrs.filter((pr) => {
     if (selectedOrg === 'all') return true;

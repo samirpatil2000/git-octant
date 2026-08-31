@@ -60,7 +60,7 @@ export function OnboardingModal({
           </div>
           <div>
             <h2 className="text-sm font-bold text-fg-light dark:text-fg-dark tracking-tight">
-              Octant
+              GitOctant
             </h2>
             <p className="text-xs text-fg-light-muted dark:text-fg-dark-muted">
               Developer Navigation for GitHub

@@ -1,5 +1,5 @@
 {
-  "name": "octant",
+  "name": "gitoctant",
   "version": "1.0.0",
   "description": "A high-precision developer navigation instrument for GitHub",
   "type": "module",

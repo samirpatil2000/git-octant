@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="public/icons/icon-128.png" alt="Octant Logo" width="128" height="128">
+  <img src="public/icons/icon-128.png" alt="GitOctant Logo" width="128" height="128">
 </p>
 
-<h1 align="center">Octant</h1>
+<h1 align="center">GitOctant</h1>
 
 <p align="center">
   <strong>A high-precision developer navigation instrument for GitHub</strong>
@@ -18,9 +18,9 @@
 
 ---
 
-### ✨ Why Octant?
+### ✨ Why GitOctant?
 
-Octant gives developers an instant, high-signal overview of everything happening across their personal GitHub repositories and multi-organization workspaces — with zero noise, zero latency, and zero telemetry.
+GitOctant gives developers an instant, high-signal overview of everything happening across their personal GitHub repositories and multi-organization workspaces — with zero noise, zero latency, and zero telemetry.
 
 - **🚀 Top 5 Personal Pushes** — Tracks and deduplicates the 5 most recent repositories you personally pushed code to, sorted strictly newest-first by your push timestamp.
 - **⚠️ Attention Radar** — Instant triage for pull requests requiring action: review requests, changes requested, failing CI checks, and merge conflicts.
@@ -37,11 +37,11 @@ Octant gives developers an instant, high-signal overview of everything happening
 ### 📸 Preview
 
 <p align="center">
-  <img src="store-assets/screenshot_1_cockpit_dark.png" alt="Octant Dark Mode Cockpit" width="100%">
+  <img src="store-assets/screenshot_1_cockpit_dark.png" alt="GitOctant Dark Mode Cockpit" width="100%">
 </p>
 
 <p align="center">
-  <img src="store-assets/screenshot_2_cockpit_light.png" alt="Octant Light Mode Cockpit" width="100%">
+  <img src="store-assets/screenshot_2_cockpit_light.png" alt="GitOctant Light Mode Cockpit" width="100%">
 </p>
 
 ---
@@ -54,8 +54,8 @@ Octant gives developers an instant, high-signal overview of everything happening
 #### Manual Developer Installation (Chrome, Brave, Edge, Arc)
 1. Clone this repository:
    ```bash
-   git clone https://github.com/samirpatil2000/octant.git
-   cd octant
+   git clone https://github.com/samirpatil2000/gitoctant.git
+   cd gitoctant
    ```
 2. Install dependencies and build the extension:
    ```bash
@@ -65,7 +65,7 @@ Octant gives developers an instant, high-signal overview of everything happening
 3. Open your browser and navigate to `chrome://extensions`.
 4. Toggle **Developer mode** in the top-right corner.
 5. Click **Load unpacked** and select the `dist/` folder inside this directory.
-6. Pin **Octant** to your browser toolbar.
+6. Pin **GitOctant** to your browser toolbar.
 
 ---
 
@@ -80,7 +80,7 @@ Octant gives developers an instant, high-signal overview of everything happening
 
 ### 🔑 GitHub Personal Access Token (PAT) Setup
 
-Octant works with both **Fine-grained Personal Access Tokens** and **Classic PATs**:
+GitOctant works with both **Fine-grained Personal Access Tokens** and **Classic PATs**:
 
 1. Go to **GitHub Settings** $\rightarrow$ **Developer Settings** $\rightarrow$ [**Personal Access Tokens**](https://github.com/settings/tokens?type=beta).
 2. Click **Generate new token**.
@@ -91,7 +91,7 @@ Octant works with both **Fine-grained Personal Access Tokens** and **Classic PAT
    - **Metadata**: Read-only (mandatory)
    - **Pull requests**: Read-only
    - **Organization permissions $\rightarrow$ Members**: Read-only
-5. Paste the token into Octant Settings and click **Test Connection**.
+5. Paste the token into GitOctant Settings and click **Test Connection**.
 
 ---
 
@@ -128,7 +128,7 @@ npm run build
 ### 📁 Architecture
 
 ```text
-octant/
+gitoctant/
 ├── src/
 │   ├── api/             # Resilient GitHub REST API client & endpoints
 │   │   ├── client.ts    # Fetch client with rate limiting & error handling

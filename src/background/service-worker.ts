@@ -14,7 +14,7 @@ const ALARM_NAME = 'gcc_periodic_refresh';
 
 // Set up periodic sync alarm
 chrome.runtime.onInstalled.addListener(async () => {
-  console.log('Octant installed.');
+  console.log('GitOctant installed.');
   setupSyncAlarm();
   performBackgroundSync();
 });
