@@ -40,7 +40,7 @@ async function runLiveE2ETest() {
     process.exit(1);
   }
 
-  console.log('🚀 Launching Real Chrome with GitHub Command Center Extension...');
+  console.log('🚀 Launching Real Chrome with GitOctant Extension...');
   const browser = await puppeteer.launch({
     executablePath: CHROME_PATH,
     headless: false,

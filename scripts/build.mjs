@@ -26,6 +26,7 @@ async function buildAll() {
     build: {
       outDir: 'dist',
       emptyOutDir: true,
+      modulePreload: false,
       rollupOptions: {
         input: {
           popup: path.resolve(root, 'popup.html'),

@@ -1,10 +1,10 @@
 # GitOctant — Chrome Web Store Listing
 
 ## Title
-GitOctant — Developer Cockpit for GitHub
+GitOctant
 
 ## Summary (Max 132 chars)
-A refined personal developer cockpit for all your GitHub repositories, personal pushes, PRs, and multi-organization activity.
+A precise developer cockpit for GitHub pushes, pull requests, repositories, and multi-organization activity.
 
 ## Detailed Description
 GitOctant gives developers an instant, high-signal overview of what is happening across all GitHub repositories they actively work on — across personal accounts and organizations.

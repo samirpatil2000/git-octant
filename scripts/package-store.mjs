@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.resolve(ROOT, 'dist');
 const STORE_ASSETS = path.resolve(ROOT, 'store-assets');
-const ZIP_PATH = path.resolve(ROOT, 'github-command-center.zip');
+const ZIP_PATH = path.resolve(ROOT, 'gitoctant-1.0.1.zip');
 
 if (!fs.existsSync(STORE_ASSETS)) {
   fs.mkdirSync(STORE_ASSETS, { recursive: true });
@@ -28,16 +28,16 @@ execSync(`cd "${DIST}" && zip -r "${ZIP_PATH}" . -x "*.DS_Store"`, { stdio: 'inh
 console.log(`✅ ZIP package created: ${ZIP_PATH} (${(fs.statSync(ZIP_PATH).size / 1024).toFixed(1)} KB)`);
 
 // Prepare store copy description
-const storeCopy = `# GitHub Command Center — Chrome Web Store Listing
+const storeCopy = `# GitOctant — Chrome Web Store Listing
 
 ## Title
-GitHub Command Center
+GitOctant
 
 ## Summary (Max 132 chars)
-A refined personal developer cockpit for all your GitHub repositories, personal pushes, PRs, and multi-organization activity.
+A precise developer cockpit for GitHub pushes, pull requests, repositories, and multi-organization activity.
 
 ## Detailed Description
-GitHub Command Center gives developers an instant, high-signal overview of what is happening across all GitHub repositories they actively work on — across personal accounts and organizations.
+GitOctant gives developers an instant, high-signal overview of what is happening across all GitHub repositories they actively work on — across personal accounts and organizations.
 
 Designed with an Apple / Steve Jobs + Linear design philosophy: calm monochrome typography, high signal-to-noise ratio, zero clutter, and instantaneous performance.
 

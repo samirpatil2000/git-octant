@@ -35,7 +35,7 @@ async function fillStoreDetails() {
   console.log(`Connected to edit page: ${devPage.url()}`);
 
   // Description text
-  const descriptionText = `GitHub Command Center gives developers an instant, high-signal overview of what is happening across all GitHub repositories they actively work on — across personal accounts and organizations.
+  const descriptionText = `GitOctant gives developers an instant, high-signal overview of what is happening across all GitHub repositories they actively work on — across personal accounts and organizations.
 
 Designed with an Apple / Steve Jobs + Linear design philosophy: calm monochrome typography, high signal-to-noise ratio, zero clutter, and instantaneous performance.
 

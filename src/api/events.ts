@@ -9,7 +9,7 @@ export async function getUserEvents(
   const events: GitHubEvent[] = [];
   const seenIds = new Set<string>();
 
-  // 1. Try authenticated user events endpoint (includes private repos)
+  // 1. Fetch user events endpoint (includes private repos when token provided)
   if (token) {
     try {
       const authRes = await githubFetch<GitHubEvent[]>(
@@ -26,24 +26,6 @@ export async function getUserEvents(
       }
     } catch (err) {
       console.warn('Failed to fetch /users/:username/events', err);
-    }
-
-    // 2. Also query /user/events for comprehensive personal activity feed
-    try {
-      const userRes = await githubFetch<GitHubEvent[]>(
-        `/user/events?per_page=${perPage}`,
-        token
-      );
-      if (Array.isArray(userRes.data)) {
-        for (const ev of userRes.data) {
-          if (!seenIds.has(ev.id)) {
-            seenIds.add(ev.id);
-            events.push(ev);
-          }
-        }
-      }
-    } catch (err) {
-      console.warn('Failed to fetch /user/events', err);
     }
   } else {
     // Unauthenticated public events fallback

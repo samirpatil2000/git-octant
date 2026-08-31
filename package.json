@@ -1,7 +1,7 @@
 {
   "name": "gitoctant",
-  "version": "1.0.0",
-  "description": "A high-precision developer navigation instrument for GitHub",
+  "version": "1.0.1",
+  "description": "A precise developer cockpit for GitHub pushes, pull requests, repositories, and multi-organization activity.",
   "type": "module",
   "scripts": {
     "dev": "vite",
